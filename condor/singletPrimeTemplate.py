@@ -34,7 +34,7 @@ process.CommonCalc.dummy_parameter = cms.string('Dummy parameter value')
 # Stop calculator options
 process.load('LJMet.Com.stopCalc_cfi')
 
-# Wprime calculator options
+# singleLep calculator options
 process.load('LJMet.Com.singleLepCalc_cfi')
 process.singleLepCalc.isWJets = cms.bool(False)
 
@@ -102,6 +102,7 @@ process.event_selector = cms.PSet(
     max_tight_lepton         = cms.int32(1),
     trigger_consistent       = cms.bool(True),
     second_lepton_veto       = cms.bool(True),
+    tau_veto				 = cms.bool(False),
     
     met_cuts                 = cms.bool(True),
     min_met                  = cms.double(0.0),
@@ -125,6 +126,7 @@ process.event_selector = cms.PSet(
     jet_collection           = cms.InputTag('goodPatJetsPFlow'),
     muon_collection          = cms.InputTag('selectedPatMuonsPFlow'),
     electron_collection      = cms.InputTag('selectedPatElectronsPFlow'),
+    tau_collection			 = cms.InputTag('selectedPatTausPFlow'),
     met_collection           = cms.InputTag('patMETsPFlow'),
     type1corrmet_collection  = cms.InputTag('pfType1CorrectedMet'),
 
@@ -139,7 +141,6 @@ process.event_selector = cms.PSet(
     DataL3JetPar             = cms.string(relBase+'/src/LJMet/singletPrime/JEC/Summer13_V4_DATA_L3Absolute_AK5PFchs.txt'),
     DataResJetPar            = cms.string(relBase+'/src/LJMet/singletPrime/JEC/Summer13_V4_DATA_L2L3Residual_AK5PFchs.txt')
     )
-
 
 #######################################################
 #

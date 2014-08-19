@@ -22,8 +22,8 @@ then
 
 python singletPrimeSubmit.py --useMC True --sample WJets --fileList WJets_Madgraph.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample W1Jets --fileList W1Jets_Madgraph.txt --submit True --local True
-python singletPrimeSubmit.py --useMC True --sample W2Jets --fileList W2Jets_Madgraph.txt --submit True --local False
-python singletPrimeSubmit.py --useMC True --sample W3Jets --fileList W3Jets_Madgraph.txt --submit True --local False
+python singletPrimeSubmit.py --useMC True --sample W2Jets --fileList W2Jets_Madgraph.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample W3Jets --fileList W3Jets_Madgraph.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample W4Jets --fileList W4Jets_Madgraph.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample TT_LH --fileList TTJETS_SemiLeptonic_Madgraph.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample TT_LL --fileList TTJETS_Leptonic_Madgraph.txt --submit True --local True
@@ -38,7 +38,12 @@ python singletPrimeSubmit.py --useMC True --sample WW --fileList WW_Pythia.txt -
 python singletPrimeSubmit.py --useMC True --sample WZ --fileList WZ_Pythia.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample ZZ --fileList ZZ_Pythia.txt --submit True --local True
 python singletPrimeSubmit.py --useMC True --sample ZJets --fileList DYJets_Madgraph.txt --submit True --local True
-
+python singletPrimeSubmit.py --useMC True --sample QCDEM20 --fileList QCDEM20-30_Pythia.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample QCDEM30 --fileList QCDEM30-80_Pythia.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample QCDEM80 --fileList QCDEM80-170_Pythia.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample QCDEM170 --fileList QCDEM170-250_Pythia.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample QCDEM250 --fileList QCDEM250-350_Pythia.txt --submit True --local True
+python singletPrimeSubmit.py --useMC True --sample QCDEM350 --fileList QCDEM350_Pythia.txt --submit True --local True
 
 fi
 
