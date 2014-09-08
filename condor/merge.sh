@@ -59,6 +59,7 @@ hadd QCDEM_350.root ../QCDEM350/QCDEM350*.root
 EventWeightsIterative outputFile='TpTH750.root'      doOneD=1   weight=1.0   events=199988     histoName='histos/nevents'
 EventWeightsIterative outputFile='TpTZ750.root'      doOneD=1   weight=1.0   events=199976     histoName='histos/nevents'
 EventWeightsIterative outputFile='TpBW750.root'      doOneD=1   weight=1.0   events=199987     histoName='histos/nevents'
+EventWeightsIterative outputFile='TpJTH750.root'      doOneD=1   weight=1.0   events=98858     histoName='histos/nevents'
 
 EventWeightsIterative outputFile='TT_LH.root'        doOneD=1   weight=104.7   events=25424818	  histoName='histos/nevents'
 EventWeightsIterative outputFile='TT_LL.root'        doOneD=1   weight=25.1    events=4246444	  histoName='histos/nevents'

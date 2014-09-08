@@ -1,0 +1,37 @@
+import FWCore.ParameterSet.Config as cms
+
+maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+readFiles = cms.untracked.vstring()
+secFiles = cms.untracked.vstring() 
+source = cms.Source ("PoolSource",fileNames = readFiles, secondaryFileNames = secFiles)
+readFiles.extend( [
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_10_1_mYV.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_11_1_FeW.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_12_1_ZVY.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_13_1_oh8.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_14_1_86y.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_15_1_NzC.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_16_1_syJ.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_17_1_Wm6.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_18_1_OWV.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_19_1_yH3.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_1_1_oyx.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_20_1_Jhv.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_21_1_LjO.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_22_1_9mw.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_23_1_Kb3.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_24_1_gdB.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_25_1_zFn.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_26_1_eL5.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_2_1_hat.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_3_1_wx3.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_4_1_ibT.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_5_1_TB7.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_6_1_opR.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_7_1_YBA.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_8_1_fUa.root',
+       '/store/user/lpchtop/noreplica/swanson/TprimeJetToTH_M-750_TuneZ2star_8TeV-madgraph_tauola/Summer12_DR53X-PU_S10_START53_V7A-v1_TLBSM_53x_v3/99bd99199697666ff01397dad5652e9e/tlbsm_53x_v3_mc_9_1_m7q.root' ] );
+
+
+secFiles.extend( [
+               ] )

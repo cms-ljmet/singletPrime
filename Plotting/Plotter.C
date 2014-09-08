@@ -85,9 +85,11 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
   if (dndm) convertToDNDM(data);
   applyDATAStyle(data);
 
-  //TH1F * QCD = (TH1F*)(f->Get("QCD"));
-  //if (dndm) convertToDNDM(QCD);
-  //applyStyle(QCD,kMagenta-10,1,1001);
+  if(chn != "mu"){
+  	TH1F * QCD = (TH1F*)(f->Get("QCD"));
+  	if (dndm) convertToDNDM(QCD);
+  	applyStyle(QCD,kMagenta-10,1,1001);
+  }
 
   TH1F * ttbar = (TH1F*)(f->Get("ttbar"));
   if (dndm) convertToDNDM(ttbar);
@@ -143,7 +145,8 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
   l->AddEntry(data,"Observed","P");
 
   l->AddEntry(EWK,"EWK","F");
-  //l->AddEntry(QCD,"QCD","F");
+  if(chn != "mu")
+  	l->AddEntry(QCD,"QCD","F");  
   l->AddEntry(ttbar,"t#bar{t}","F");
   l->AddEntry(stop,"Single t","F");
 
@@ -177,8 +180,8 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
 		l->AddEntry(signal3,"T`#rightarrow BW","F");
 	  }  
   }
-      
-  //hs->Add(QCD);
+  if(chn != "mu")
+  	hs->Add(QCD);
   hs->Add(EWK);
   hs->Add(stop);
   hs->Add(ttbar);
@@ -226,7 +229,8 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
 	
   errorBand->Add(ttbar);
   errorBand->Add(stop);
-  //errorBand->Add(QCD);
+  if(chn != "mu")
+  	errorBand->Add(QCD);
   
   errorBand  ->SetMarkerSize(0);
   errorBand  ->SetFillColor(1);
@@ -243,7 +247,8 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
 		wErr = EWK->GetBinContent(i)*w + EWK->GetBinError(i);
 		ttErr = ttbar->GetBinContent(i)*tt + ttbar->GetBinError(i);
 		tErr = stop->GetBinContent(i)*t + stop->GetBinError(i);
-		//qErr = QCD->GetBinContent(i)*q + QCD->GetBinError(i);
+		if(chn != "mu")
+			qErr = QCD->GetBinContent(i)*q + QCD->GetBinError(i);
 		errorBand->SetBinError(i,wErr+ttErr+tErr+qErr);
   }  
   
@@ -289,7 +294,8 @@ makeStackPlot(TString name,TString decay,TString file,TString labelX,TString chn
     
     TH1F * data2 = (TH1F*)data->Clone("data");
     TH1F * mc = (TH1F*)(ttbar);
-    //mc->Add(QCD);
+    if(chn != "mu")
+    	mc->Add(QCD);
     mc->Add(EWK);
     mc->Add(stop);
     
@@ -398,7 +404,7 @@ void makeDataCard(std::string var, std::string outfile, int bins, float min, flo
 	float ttbar;
 	float wjets;
 	float singletop;
-	//float qcd;
+	float qcd;
 	float vv;
 	float zjets;
 	
@@ -415,13 +421,16 @@ void makeDataCard(std::string var, std::string outfile, int bins, float min, flo
 		data = makeHistogram("data",d,f,var,cut,bins,min,max);
 		weight = "__WEIGHT__*weight_ElectronEff_53x_singleLepCalc*"+lumi;
 		d->Close();
+		TFile *q = new TFile("QCDEM.root");
+		qcd = makeHistogram("QCD",q,f,var,"("+cut+")*"+weight,bins,min,max);
+		q->Close();
 	}
 	else{
 		std::cout << "Undefined Channel!! Bad things are about to happen" << std::endl;
 	}
 	
 	if(decay == "TH"){
-		s = new TFile("TpTH750.root");
+		s = new TFile("TpJTH750.root");
 		sig = makeHistogram("TH_750",s,f,var,"("+cut+")*"+weight,bins,min,max);
 		s->Close();
 	}
@@ -436,7 +445,7 @@ void makeDataCard(std::string var, std::string outfile, int bins, float min, flo
 		s->Close();
 	}
 	else if(decay =="TH_TZ"){
-		s = new TFile("TpTH750.root");
+		s = new TFile("TpJTH750.root");
 		sig = makeHistogram("TH_750",s,f,var,"("+cut+")*"+weight,bins,min,max);
 		s->Close();
 		s2 = new TFile("TpTZ750.root");
@@ -444,7 +453,7 @@ void makeDataCard(std::string var, std::string outfile, int bins, float min, flo
 		s2->Close();
 	}  
 	else if(decay == "ALL"){
-		s = new TFile("TpTH750.root");
+		s = new TFile("TpJTH750.root");
 		sig = makeHistogram("TH_750",s,f,var,"("+cut+")*"+weight,bins,min,max);
 		s->Close();
 		s2 = new TFile("TpTZ750.root");
@@ -463,8 +472,6 @@ void makeDataCard(std::string var, std::string outfile, int bins, float min, flo
 	ttbar = makeHistogram("ttbar",tt,f,var,"("+cut+")*"+weight,bins,min,max);
 	TFile *t = new TFile("STOP.root");
 	singletop = makeHistogram("singletop",t,f,var,"("+cut+")*"+weight,bins,min,max);
-	//TFile *q = new TFile("QCD.root");
-	//qcd = makeHistogram("QCD",q,f,var,"("+cut+")*"+weight,bins,min,max);
 	TFile *v = new TFile("VV.root");
 	vv = makeHistogram("VV",v,f,var,"("+cut+")*"+weight,bins,min,max);
 	TFile *z = new TFile("ZJets.root");
@@ -493,7 +500,7 @@ void makeThetaCard(std::string var, std::string outfile, int bins, float min, fl
 	float ttbar;
 	float wjets;
 	float singletop;
-	//float qcd;
+	float qcd;
 	float vv;
 	float zjets;
 
@@ -510,6 +517,9 @@ void makeThetaCard(std::string var, std::string outfile, int bins, float min, fl
 		data = makeHistogram(chn+"_"+cat+"__DATA",d,f,var,cut,bins,min,max);
 		weight = "__WEIGHT__*weight_ElectronEff_53x_singleLepCalc*"+lumi;
 		d->Close();
+		TFile *q = new TFile("QCDEM.root");
+		qcd = makeHistogram(chn+"_"+cat+"__qcd",q,f,var,"("+cut+")*"+weight,bins,min,max);
+		q->Close();
 	}
 	else{
 		std::cout << "Undefined Channel!! Bad things are about to happen" << std::endl;
@@ -519,12 +529,12 @@ void makeThetaCard(std::string var, std::string outfile, int bins, float min, fl
 			s = new TFile("TpTH750.root");
 			sig = makeHistogram(chn+"_"+cat+"__th750",s,f,var,"("+cut+")*"+weight,bins,min,max);
 			s->Close();
-			s2 = new TFile("TpTZ750.root");
-			sig2 = makeHistogram(chn+"_"+cat+"__tz750",s2,f,var,"("+cut+")*"+weight,bins,min,max);
-			s2->Close();
-			s3 = new TFile("TpBW750.root");
-			sig3 = makeHistogram(chn+"_"+cat+"__bw750",s3,f,var,"("+cut+")*"+weight,bins,min,max);
-			s3->Close();
+// 			s2 = new TFile("TpTZ750.root");
+// 			sig2 = makeHistogram(chn+"_"+cat+"__tz750",s2,f,var,"("+cut+")*"+weight,bins,min,max);
+// 			s2->Close();
+// 			s3 = new TFile("TpBW750.root");
+// 			sig3 = makeHistogram(chn+"_"+cat+"__bw750",s3,f,var,"("+cut+")*"+weight,bins,min,max);
+// 			s3->Close();
 
 
 	
@@ -562,6 +572,7 @@ float makeHistogram(std::string name, TFile* fIn, TFile* fOut, std::string var, 
      	h->SetBinContent(1,0.00001);
      }
      h->Write(h->GetName(),TObject::kOverwrite);
+     //std::cout << "Yield for " << h->GetName() << " = " << yield << " +/- " << error << std::endl;
 
      return yield;
      
